@@ -1,0 +1,3 @@
+# Docker Compose (development) configuration
+# Compose file for development environment
+# Includes API and frontend services with hot-reload and volume mounts
