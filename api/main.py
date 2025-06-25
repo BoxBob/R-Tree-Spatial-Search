@@ -9,11 +9,13 @@ import json
 
 # --- Connection Pooling ---
 def get_db_connection():
+    import os
     conn = psycopg2.connect(
-        host="postgres",
-        database="spatial_search_db",
-        user="spatial_user",
-        password="spatial_password"
+        host=os.getenv("POSTGRES_HOST", "postgres"),
+        port=os.getenv("POSTGRES_PORT", 5432),
+        database=os.getenv("POSTGRES_DB", "spatial_search_db"),
+        user=os.getenv("POSTGRES_USER", "spatial_user"),
+        password=os.getenv("POSTGRES_PASSWORD", "spatial_password")
     )
     try:
         yield conn
@@ -21,7 +23,13 @@ def get_db_connection():
         conn.close()
 
 def get_redis_connection():
-    r = redis.Redis(host='redis', port=6379, db=0, decode_responses=True)
+    import os
+    r = redis.Redis(
+        host=os.getenv("REDIS_HOST", "redis"),
+        port=int(os.getenv("REDIS_PORT", 6379)),
+        password=os.getenv("REDIS_PASSWORD", None),
+        db=0, decode_responses=True
+    )
     try:
         yield r
     finally:

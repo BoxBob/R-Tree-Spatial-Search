@@ -1,3 +1,68 @@
-# Docker Compose (development) configuration
-# Compose file for development environment
-# Includes API and frontend services with hot-reload and volume mounts
+version: '3.8'
+services:
+  postgres:
+    extends:
+      file: docker-compose.yml
+      service: postgres
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init:/docker-entrypoint-initdb.d
+      - ./database/backups:/backups
+
+  redis:
+    extends:
+      file: docker-compose.yml
+      service: redis
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: rtree_api
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - REDIS_URL=${REDIS_URL}
+      - ENVIRONMENT=development
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./api:/app
+      - ./rtree_engine:/app/rtree_engine  # Mount your R-tree engine
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - spatial_network
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: rtree_frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - REACT_APP_API_URL=${REACT_APP_API_URL}
+    depends_on:
+      - api
+    networks:
+      - spatial_network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  spatial_network:
+    driver: bridge
