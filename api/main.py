@@ -10,9 +10,11 @@ import json
 # --- Connection Pooling ---
 def get_db_connection():
     import os
+    host = os.getenv("POSTGRES_HOST", "localhost")
+    port = os.getenv("POSTGRES_PORT", 5432)
     conn = psycopg2.connect(
-        host=os.getenv("POSTGRES_HOST", "postgres"),
-        port=os.getenv("POSTGRES_PORT", 5432),
+        host=host,
+        port=port,
         database=os.getenv("POSTGRES_DB", "spatial_search_db"),
         user=os.getenv("POSTGRES_USER", "spatial_user"),
         password=os.getenv("POSTGRES_PASSWORD", "spatial_password")
@@ -131,3 +133,7 @@ async def knn_search(query: KNNQuery, db=Depends(get_db_connection)):
             address="N/A", bathrooms=0.0
         ))
     return properties
+
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy", "service": "rtree-spatial-search"}
