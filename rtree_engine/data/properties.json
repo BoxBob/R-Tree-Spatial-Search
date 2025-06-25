@@ -1,0 +1,67 @@
+[
+  {
+    "id": 1,
+    "address": "123 Main St, San Francisco, CA",
+    "price": 1200000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "square_footage": 1500,
+    "location": {
+      "x": -122.4194,
+      "y": 37.7749
+    },
+    "property_type": "House"
+  },
+  {
+    "id": 2,
+    "address": "456 Oak Ave, New York, NY",
+    "price": 850000,
+    "bedrooms": 2,
+    "bathrooms": 2.5,
+    "square_footage": 1200,
+    "location": {
+      "x": -74.0060,
+      "y": 40.7128
+    },
+    "property_type": "Condo"
+  },
+  {
+    "id": 3,
+    "address": "789 Pine Rd, Austin, TX",
+    "price": 550000,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "square_footage": 2200,
+    "location": {
+      "x": -97.7431,
+      "y": 30.2672
+    },
+    "property_type": "House"
+  },
+  {
+    "id": 4,
+    "address": "101 Elm Blvd, Seattle, WA",
+    "price": 780000,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "square_footage": 950,
+    "location": {
+      "x": -122.3321,
+      "y": 47.6062
+    },
+    "property_type": "Apartment"
+  },
+  {
+    "id": 5,
+    "address": "202 Birch Ln, Denver, CO",
+    "price": 620000,
+    "bedrooms": 3,
+    "bathrooms": 2.5,
+    "square_footage": 1800,
+    "location": {
+      "x": -104.9903,
+      "y": 39.7392
+    },
+    "property_type": "Townhouse"
+  }
+]

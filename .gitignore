@@ -11,3 +11,48 @@ node_modules/
 postgres_data/
 redis_data/
 database/backups/
+
+# --- Build Artifacts for the 'rtree_engine' subproject ---
+#
+# THIS IS THE MOST IMPORTANT LINE FOR YOUR STRUCTURE
+# It ignores the 'build' folder inside your 'rtree_engine' project
+/rtree_engine/build/
+
+# Ignore common output folders that might be created by Visual Studio
+/rtree_engine/Debug/
+/rtree_engine/Release/
+/rtree_engine/x64/
+
+# --- General C++ and VS Artifacts (these work globally) ---
+# Executables and libraries
+*.exe
+*.dll
+*.lib
+*.so
+*.a
+*.obj
+*.o
+
+# Visual Studio user files and cache
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.suo
+*.pdb
+*.ilk
+ipch/
+.vs/
+
+# --- Operating System and Editor Files ---
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+*~
+*.swp
+
+# --- Dependency Cache ---
+# FetchContent creates this inside the build directory, so the first
+# rule already covers it, but being explicit can help.
+/rtree_engine/build/_deps/
