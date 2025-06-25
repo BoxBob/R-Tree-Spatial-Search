@@ -35,7 +35,8 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        # Install from your main requirements file
+        pip install -r requirements.txt 
         pip install pytest pytest-cov pytest-asyncio
     
     - name: Run R-tree engine tests
@@ -43,9 +44,11 @@ jobs:
         pytest rtree_engine/tests/ -v --cov=rtree_engine
     
     - name: Run API tests
+      # This is the new/updated step
       run: |
-        pytest api/tests/ -v
+        pytest api/tests/ -v --cov=api
       env:
+        # Provide the test database with the connection details for the CI service
         DATABASE_URL: postgresql://test_user:test_password@localhost:5432/test_db
 
   test-frontend:
