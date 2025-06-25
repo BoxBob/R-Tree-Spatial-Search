@@ -44,8 +44,8 @@ jobs:
         pytest rtree_engine/tests/ -v --cov=rtree_engine
     
     - name: Run API tests
-      # This is the new/updated step
       run: |
+        export PYTHONPATH=.
         pytest api/tests/ -v --cov=api
       env:
         # Provide the test database with the connection details for the CI service
