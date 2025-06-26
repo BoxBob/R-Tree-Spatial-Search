@@ -1,0 +1,2 @@
+-- Indexes: spatial_indexes
+-- Add your spatial indexes SQL here

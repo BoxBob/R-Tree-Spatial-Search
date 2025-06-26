@@ -1,0 +1,2 @@
+-- Analytics: usage_statistics
+-- Add your usage statistics SQL here

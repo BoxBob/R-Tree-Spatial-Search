@@ -1,0 +1,2 @@
+-- Table: rtree_nodes
+-- Add your R-tree nodes table SQL here

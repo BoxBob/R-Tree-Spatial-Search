@@ -1,0 +1,2 @@
+-- Setup: create_extensions
+-- Add your extension creation SQL here

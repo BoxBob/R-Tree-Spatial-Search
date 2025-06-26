@@ -1,0 +1,31 @@
+property_etl:
+  source_type: csv
+  source_path: data/raw/properties.csv
+  batch_size: 1000
+  latitude_column: latitude
+  longitude_column: longitude
+  coordinate_bounds:
+    min_lat: 25.0
+    max_lat: 50.0
+    min_lng: -125.0
+    max_lng: -65.0
+  column_mapping:
+    lat: latitude
+    lng: longitude
+    addr: address
+    prop_type: property_type
+
+amenity_etl:
+  source_type: shapefile
+  source_path: data/raw/amenities.shp
+  batch_size: 500
+  amenity_types:
+    - school
+    - hospital
+    - park
+    - shopping
+
+boundary_etl:
+  source_type: geojson
+  source_path: data/raw/city_boundaries.geojson
+  batch_size: 100

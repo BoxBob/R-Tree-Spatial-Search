@@ -1,0 +1,22 @@
+-- =====================================================
+-- Database Initialization Script (psycopg2 compatible)
+-- File: database/setup/init_database.sql
+-- Purpose: Contains only valid SQL for programmatic execution
+-- =====================================================
+
+-- NOTE: This file previously used psql meta-commands (\echo, \i) which are not supported by psycopg2.
+-- To initialize your test database programmatically, you must manually concatenate the SQL from the referenced files below:
+--   database/migrations/001_initial_schema.sql
+--   database/migrations/002_spatial_indexes.sql
+--   database/migrations/003_rtree_metadata.sql
+--   database/functions/spatial_functions.sql
+--   database/triggers/audit_triggers.sql
+--   database/views/property_views.sql
+--   database/setup/grant_permissions.sql
+--
+-- You can copy the contents of those files here, or create a separate test schema file for automation.
+
+-- Example: (Uncomment and paste actual SQL below)
+-- CREATE TABLE ...;
+-- CREATE INDEX ...;
+-- ...

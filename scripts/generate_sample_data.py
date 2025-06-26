@@ -1,4 +1,5 @@
 import psycopg2
+import os
 import random
 import json
 from faker import Faker
@@ -12,11 +13,11 @@ fake.add_provider(address)
 
 # Database connection
 conn = psycopg2.connect(
-    host="localhost",
-    port="5432",
-    database="spatial_search_db",
-    user="spatial_user",
-    password="spatial_password"
+    host=os.getenv("DB_HOST", "localhost"),
+    port=os.getenv("DB_PORT", "5432"),
+    database=os.getenv("DB_NAME", "postgres"),
+    user=os.getenv("DB_USER", "spatial_user"),
+    password=os.getenv("DB_PASSWORD", "spatial_password")
 )
 
 def generate_properties(count=10000):

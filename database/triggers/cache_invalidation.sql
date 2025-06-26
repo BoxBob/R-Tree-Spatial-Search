@@ -1,0 +1,2 @@
+-- Triggers: cache_invalidation
+-- Add your cache invalidation SQL here

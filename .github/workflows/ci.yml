@@ -39,6 +39,15 @@ jobs:
         pip install -r requirements.txt 
         pip install pytest pytest-cov pytest-asyncio
     
+    - name: Initialize database schema
+      run: |
+        for f in database/setup/*.sql; do psql -h localhost -U $POSTGRES_USER -d $POSTGRES_DB -f "$f"; done
+      env:
+        PGPASSWORD: test_password
+        POSTGRES_USER: test_user
+        POSTGRES_DB: test_db
+        POSTGRES_HOST: localhost
+
     - name: Run R-tree engine tests
       run: |
         pytest rtree_engine/tests/ -v --cov=rtree_engine
